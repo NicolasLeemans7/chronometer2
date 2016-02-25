@@ -1,29 +1,29 @@
-package StatePattern;
+package ChronometerFeatures;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class ChronometerMain implements ActionListener {
     
-    private JButton b1, b2, b3;
+    private JButton leftButton, upButton, rightButton;
     private JLabel myText1;
     private JLabel myText2;
     
     private ChronoContext myContext;
 
     public ChronometerMain() {
-        Init();
+        init();
     }
     
     // it is considered good programming practice that the actual
     // user interface code is not put in the class Constructor itself 
-    private void Init() {
-        b1 = new JButton("left");
-        b1.addActionListener(this);
-        b2 = new JButton("up");
-        b2.addActionListener(this);
-        b3 = new JButton("right");
-        b3.addActionListener(this);
+    private void init() {
+        leftButton = new JButton("left");
+        leftButton.addActionListener(this);
+        upButton = new JButton("up");
+        upButton.addActionListener(this);
+        rightButton = new JButton("right");
+        rightButton.addActionListener(this);
         myText1 = new JLabel();
         myText2 = new JLabel();
 
@@ -41,9 +41,9 @@ public class ChronometerMain implements ActionListener {
         myContent.add(myText2,1);
         myContent.add(new JLabel());    // Don't ask…
         // filling second row of grid (3 columns) with buttons
-        myContent.add(b1);
-        myContent.add(b2);
-        myContent.add(b3);
+        myContent.add(leftButton);
+        myContent.add(upButton);
+        myContent.add(rightButton);
         myFrame.pack();
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myFrame.setVisible(true);
@@ -51,14 +51,14 @@ public class ChronometerMain implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent e) {
-        if((JButton)e.getSource()==b1) {
-            myContext.buttonpushed(ButtonType.left);
+        if((JButton)e.getSource()==leftButton) {
+            myContext.buttonpushed(ButtonType.LEFT);
         }
-        else if((JButton)e.getSource()==b2){
-            myContext.buttonpushed(ButtonType.up);
+        else if((JButton)e.getSource()==upButton){
+            myContext.buttonpushed(ButtonType.UP);
          }
-        else if((JButton)e.getSource()==b3){
-        	myContext.buttonpushed(ButtonType.right);
+        else if((JButton)e.getSource()==rightButton){
+        	myContext.buttonpushed(ButtonType.RIGHT);
         }
         
         myText1.setText(myContext.getDisplayText());
